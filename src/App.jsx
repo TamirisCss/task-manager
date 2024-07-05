@@ -1,7 +1,9 @@
+import Sidebar from './components/Sidebar'
+
 const App = () => {
   return (
     <div>
-      <h1>Hello, world!</h1>
+      <Sidebar />
     </div>
   )
 }
