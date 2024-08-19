@@ -1,45 +1,59 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Estudar FSC",
       "description": "Estudar para a prova de FSC",
       "time": "morning",
       "status": "done"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Ler livro",
       "description": "Ler o livro de matemática",
       "time": "morning",
       "status": "done"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Treinar",
       "description": "Treinar para a competição de natação",
       "time": "afternoon",
       "status": "in_progress"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Fazer compras",
       "description": "Comprar os ingredientes para o jantar",
       "time": "afternoon",
       "status": "in_progress"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Descansar",
       "description": "Assistir um filme com a família",
       "time": "evening",
       "status": "not_started"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Meditar",
       "description": "Meditar por 10 minutos",
       "time": "evening",
+      "status": "not_started"
+    },
+    {
+      "id": "e1a119a3-64fd-4410-9dfa-dbd908ac2580",
+      "title": "task number 1",
+      "time": "morning",
+      "description": "taske number 1",
+      "status": "not_started"
+    },
+    {
+      "id": "ee6ef0fb-5d0a-459c-8a9c-b87aebb38ea8",
+      "title": "task 2",
+      "time": "morning",
+      "description": "task 2",
       "status": "not_started"
     }
   ]
