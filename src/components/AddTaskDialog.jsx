@@ -6,12 +6,19 @@ import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
 import { v4 } from 'uuid'
 
+import { LoaderIcon } from '../assets/icons'
 import Button from './Button'
 import Input from './Input'
 import TimeSelect from './TimeSelect'
 
-const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
+const AddTaskDialog = ({
+  isOpen,
+  handleClose,
+  onSubmitSuccess,
+  onSubmitError,
+}) => {
   const [errors, setErrors] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const nodeRef = useRef()
   const titleRef = useRef()
@@ -24,7 +31,8 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
     }
   }, [isOpen])
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
+    setIsLoading(true)
     const newErrors = []
 
     const title = titleRef.current.value
@@ -52,18 +60,30 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
       })
     }
 
+    setErrors(newErrors)
+
     if (newErrors.length > 0) {
-      setErrors(newErrors)
-      return
+      return setIsLoading(false)
     }
 
-    handleSubmit({
+    const task = {
       id: v4(),
       title,
       time,
       description,
       status: 'not_started',
+    }
+    const response = await fetch('http://localhost:3000/tasks', {
+      method: 'POST',
+      body: JSON.stringify(task),
     })
+
+    if (!response.ok) {
+      setIsLoading(false)
+      return onSubmitError()
+    }
+    onSubmitSuccess(task)
+    setIsLoading(false)
     handleClose()
   }
 
@@ -88,10 +108,10 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
             className="fixed bottom-0 left-0 top-0 flex h-screen w-screen items-center justify-center backdrop-blur"
           >
             <div className="rounded-xl bg-white p-5 text-center shadow">
-              <h2 className="text-brand-dark-blue text-xl font-semibold">
+              <h2 className="text-xl font-semibold text-brand-dark-blue">
                 Nova Tarefa
               </h2>
-              <p className="text-brand-text-gray mb-4 mt-1 text-sm">
+              <p className="mb-4 mt-1 text-sm text-brand-text-gray">
                 Insira as Informações abaixo
               </p>
               <div className="flex w-[336px] flex-col space-y-4">
@@ -124,7 +144,9 @@ const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   size="large"
                   className="w-full"
                   onClick={handleSaveClick}
+                  disabled={isLoading}
                 >
+                  {isLoading && <LoaderIcon className="animate-spin" />}
                   Salvar
                 </Button>
               </div>
