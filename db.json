@@ -34,6 +34,13 @@
       "time": "afternoon",
       "description": "Treinar Calistenia",
       "status": "not_started"
+    },
+    {
+      "id": "831b822f-0076-4716-98f9-e51110344620",
+      "title": "caixa de areia",
+      "time": "evening",
+      "description": "limpar a caixa de areia do gato",
+      "status": "not_started"
     }
   ]
 }
