@@ -41,6 +41,13 @@
       "time": "evening",
       "description": "limpar a caixa de areia do gato",
       "status": "not_started"
+    },
+    {
+      "id": "3a01a8bf-08ad-48e1-bc4c-a0dd10a74f6b",
+      "title": "comer fruta",
+      "time": "afternoon",
+      "description": "comer uma fruta",
+      "status": "not_started"
     }
   ]
 }
